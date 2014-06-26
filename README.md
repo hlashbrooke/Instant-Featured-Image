@@ -9,4 +9,4 @@ When activated, this plugin adds a new button next to the "insert into post" but
 
 ## Why did you build this plugin?
 
-After @defries [tweeted](https://twitter.com/DeFries/status/481754387329875968) about this issue, I set out to solve it.
+After [defries](https://github.com/defries) posted [a tweet](https://twitter.com/DeFries/status/481754387329875968) about this issue, I set out to solve it.
