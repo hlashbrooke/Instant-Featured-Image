@@ -2,10 +2,10 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Auto_Feature_Image {
+class Instant_Featured_Image {
 
 	/**
-	 * The single instance of Auto_Feature_Image.
+	 * The single instance of Instant_Featured_Image.
 	 * @var 	object
 	 * @access  private
 	 * @since 	1.0.0
@@ -84,7 +84,7 @@ class Auto_Feature_Image {
 	 */
 	public function __construct ( $file = '', $version = '1.0.0' ) {
 		$this->_version = $version;
-		$this->_token = 'auto_feature_image';
+		$this->_token = 'instant_featured_image';
 
 		$this->file = $file;
 		$this->dir = dirname( $this->file );
@@ -99,8 +99,8 @@ class Auto_Feature_Image {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
 
 		// Set featured image via ajax
-		add_action( 'wp_ajax_auto_feature_image', array( $this, 'set_featured_image' ) );
-		add_action( 'wp_ajax_nopriv_auto_feature_image', array( $this, 'set_featured_image' ) );
+		add_action( 'wp_ajax_instant_featured_image', array( $this, 'set_featured_image' ) );
+		add_action( 'wp_ajax_nopriv_instant_featured_image', array( $this, 'set_featured_image' ) );
 
 		// Handle localisation
 		$this->load_plugin_textdomain();
@@ -120,10 +120,10 @@ class Auto_Feature_Image {
 
 		// Security check
 		$nonce = '';
-		if ( isset($_POST['auto_feature_image_nonce']) ) {
-			$nonce = esc_html( $_POST['auto_feature_image_nonce'] );
+		if ( isset($_POST['instant_featured_image_nonce']) ) {
+			$nonce = esc_html( $_POST['instant_featured_image_nonce'] );
 		}
-		if ( ! wp_verify_nonce( $nonce, 'auto_feature_image_nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'instant_featured_image_nonce' ) ) {
 			die( $html );
 		}
 
@@ -209,10 +209,10 @@ class Auto_Feature_Image {
 
 		// Localise script and set nonce vars
 		$data = array(
-			'button_text' => __( 'Insert & set as featured image', 'auto-feature-image' ),
-			'auto_feature_image_nonce' => wp_create_nonce( 'auto_feature_image_nonce' )
+			'button_text' => __( 'Insert & set as featured image', 'instant-featured-image' ),
+			'instant_featured_image_nonce' => wp_create_nonce( 'instant_featured_image_nonce' )
 		);
-		wp_localize_script( $this->_token . '-admin', 'auto_feature_image_i18n', $data );
+		wp_localize_script( $this->_token . '-admin', 'instant_featured_image_i18n', $data );
 
 	} // End admin_enqueue_scripts()
 
@@ -223,7 +223,7 @@ class Auto_Feature_Image {
 	 * @return void
 	 */
 	public function load_localisation () {
-		load_plugin_textdomain( 'auto-feature-image' , false , dirname( plugin_basename( $this->file ) ) . '/lang/' );
+		load_plugin_textdomain( 'instant-featured-image' , false , dirname( plugin_basename( $this->file ) ) . '/lang/' );
 	} // End load_localisation()
 
 	/**
@@ -233,7 +233,7 @@ class Auto_Feature_Image {
 	 * @return void
 	 */
 	public function load_plugin_textdomain () {
-	    $domain = 'auto-feature-image';
+	    $domain = 'instant-featured-image';
 
 	    $locale = apply_filters( 'plugin_locale' , get_locale() , $domain );
 
@@ -242,14 +242,14 @@ class Auto_Feature_Image {
 	} // End load_plugin_textdomain()
 
 	/**
-	 * Main Auto_Feature_Image Instance
+	 * Main Instant_Featured_Image Instance
 	 *
-	 * Ensures only one instance of Auto_Feature_Image is loaded or can be loaded.
+	 * Ensures only one instance of Instant_Featured_Image is loaded or can be loaded.
 	 *
 	 * @since 1.0.0
 	 * @static
-	 * @see Auto_Feature_Image()
-	 * @return Main Auto_Feature_Image instance
+	 * @see Instant_Featured_Image()
+	 * @return Main Instant_Featured_Image instance
 	 */
 	public static function instance ( $file = '', $version = '1.0.0' ) {
 		if ( is_null( self::$_instance ) ) {

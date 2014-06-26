@@ -17,8 +17,8 @@ jQuery( document ).ready( function ( e ) {
 			jQuery.post(
 				ajaxurl,
 				{
-					action : 'auto_feature_image',
-					auto_feature_image_nonce : auto_feature_image_i18n.auto_feature_image_nonce,
+					action : 'instant_featured_image',
+					instant_featured_image_nonce : instant_featured_image_i18n.instant_featured_image_nonce,
 					data : 'src=' + image_src + '&post_id=' + post_id
 				},
 				function( response ) {
@@ -48,7 +48,7 @@ jQuery( document ).ready( function ( e ) {
 	        view.set( "insert-and-feature", {
 	            style: "primary",
 	            priority: 70,
-	            text: auto_feature_image_i18n.button_text,
+	            text: instant_featured_image_i18n.button_text,
 	            requires: { selection: true },
 
 	            click: function() {
