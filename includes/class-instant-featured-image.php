@@ -204,15 +204,20 @@ class Instant_Featured_Image {
 	 * @return void
 	 */
 	public function admin_enqueue_scripts ( $hook = '' ) {
-		wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array( 'jquery' ), $this->_version );
-		wp_enqueue_script( $this->_token . '-admin' );
 
-		// Localise script and set nonce vars
-		$data = array(
-			'button_text' => __( 'Insert & set as featured image', 'instant-featured-image' ),
-			'instant_featured_image_nonce' => wp_create_nonce( 'instant_featured_image_nonce' )
-		);
-		wp_localize_script( $this->_token . '-admin', 'instant_featured_image_i18n', $data );
+		$screen = get_current_screen();
+
+		if( 'post' == $screen->id ) {
+			wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array( 'jquery' ), $this->_version );
+			wp_enqueue_script( $this->_token . '-admin' );
+
+			// Localise script and set nonce vars
+			$data = array(
+				'button_text' => __( 'Insert & set as featured image', 'instant-featured-image' ),
+				'instant_featured_image_nonce' => wp_create_nonce( 'instant_featured_image_nonce' )
+			);
+			wp_localize_script( $this->_token . '-admin', 'instant_featured_image_i18n', $data );
+		}
 
 	} // End admin_enqueue_scripts()
 

@@ -23,7 +23,7 @@ jQuery( document ).ready( function ( e ) {
 				},
 				function( response ) {
 					if( response ) {
-						jQuery('.inside', '#postimagediv').html( response );
+						jQuery( '.inside', '#postimagediv' ).html( response );
 					}
 				}
 			);
