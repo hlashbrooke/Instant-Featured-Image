@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/auto-feature-image\n"
-"POT-Creation-Date: 2014-06-26 17:53:13+00:00\n"
+"POT-Creation-Date: 2014-06-28 19:57:45+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: includes/class-instant-featured-image.php:212
-msgid "Insert & set as featured image"
+#: includes/class-instant-featured-image.php:217
+msgid "Insert & set featured image"
 msgstr ""
 
-#: includes/class-instant-featured-image.php:267
-#: includes/class-instant-featured-image.php:276
+#: includes/class-instant-featured-image.php:289
+#: includes/class-instant-featured-image.php:298
 msgid "Cheatin&#8217; huh?"
 msgstr ""
