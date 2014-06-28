@@ -95,8 +95,9 @@ class Instant_Featured_Image {
 
 		register_activation_hook( $this->file, array( $this, 'install' ) );
 
-		// Load admin JS
+		// Load admin JS & CSS
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10, 1 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles' ), 10, 1 );
 
 		// Set featured image via ajax
 		add_action( 'wp_ajax_instant_featured_image', array( $this, 'set_featured_image' ) );
@@ -213,13 +214,29 @@ class Instant_Featured_Image {
 
 			// Localise script and set nonce vars
 			$data = array(
-				'button_text' => __( 'Insert & set as featured image', 'instant-featured-image' ),
+				'button_text' => __( 'Insert & set featured image', 'instant-featured-image' ),
 				'instant_featured_image_nonce' => wp_create_nonce( 'instant_featured_image_nonce' )
 			);
 			wp_localize_script( $this->_token . '-admin', 'instant_featured_image_i18n', $data );
 		}
 
 	} // End admin_enqueue_scripts()
+
+	/**
+	 * Load admin CSS.
+	 * @access  public
+	 * @since   1.0.0
+	 * @return  void
+	 */
+	public function admin_enqueue_styles ( $hook = '' ) {
+
+		$screen = get_current_screen();
+
+		if( 'post' == $screen->id ) {
+			wp_register_style( $this->_token . '-admin', esc_url( $this->assets_url ) . 'css/admin.css', array(), $this->_version );
+			wp_enqueue_style( $this->_token . '-admin' );
+		}
+	} // End admin_enqueue_styles ()
 
 	/**
 	 * Load plugin localisation
