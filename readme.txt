@@ -18,7 +18,7 @@ It is possible to select multiple media items to insert, so this plugin will set
 
 Want to contribute? [Fork the GitHub repository](https://github.com/hlashbrooke/Instant-Featured-Image).
 
-Got some great ideas? [Post on the support forum](http://wordpress.org/support/plugin/instant-featured-image)
+Got some great ideas? [Post on the support forum](http://wordpress.org/support/plugin/instant-featured-image).
 
 == Installation ==
 
