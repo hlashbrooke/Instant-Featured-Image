@@ -6,7 +6,7 @@
  * Description: Set an image as the featured image at the same time as you insert it into the post content
  * Author: Hugh Lashbrooke
  * Author URI: http://www.hughlashbrooke.com/
- * Requires at least: 3.9
+ * Requires at least: 3.8
  * Tested up to: 3.9.1
  *
  * @package WordPress
