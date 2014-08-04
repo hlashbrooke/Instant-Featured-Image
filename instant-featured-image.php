@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Instant Featured Image
- * Version: 1.0
+ * Version: 1.0.1
  * Plugin URI: http://www.hughlashbrooke.com/
  * Description: Set an image as the featured image at the same time as you insert it into the post content
  * Author: Hugh Lashbrooke

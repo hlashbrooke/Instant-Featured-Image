@@ -208,7 +208,7 @@ class Instant_Featured_Image {
 
 		$screen = get_current_screen();
 
-		if( 'post' == $screen->id ) {
+		if( 'post' == $screen->base ) {
 			wp_register_script( $this->_token . '-admin', esc_url( $this->assets_url ) . 'js/admin' . $this->script_suffix . '.js', array( 'jquery' ), $this->_version );
 			wp_enqueue_script( $this->_token . '-admin' );
 
@@ -232,7 +232,7 @@ class Instant_Featured_Image {
 
 		$screen = get_current_screen();
 
-		if( 'post' == $screen->id ) {
+		if( 'post' == $screen->base ) {
 			wp_register_style( $this->_token . '-admin', esc_url( $this->assets_url ) . 'css/admin.css', array(), $this->_version );
 			wp_enqueue_style( $this->_token . '-admin' );
 		}
