@@ -7,7 +7,7 @@
  * Author: Hugh Lashbrooke
  * Author URI: http://www.hughlashbrooke.com/
  * Requires at least: 3.8
- * Tested up to: 3.9.1
+ * Tested up to: 4.0
  *
  * @package WordPress
  * @author Hugh Lashbrooke
@@ -26,7 +26,7 @@ require_once( 'includes/class-instant-featured-image.php' );
  * @return object Instant_Featured_Image
  */
 function Instant_Featured_Image () {
-	$instance = Instant_Featured_Image::instance( __FILE__, '1.0.0' );
+	$instance = Instant_Featured_Image::instance( __FILE__, '1.0.1' );
 	return $instance;
 }
 
