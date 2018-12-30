@@ -1,68 +1,69 @@
-jQuery( document ).ready( function ( e ) {
+jQuery(document).ready(function(e) {
+  jQuery.fn.customSetFeaturedImage = function(attachment_id) {
+    var image_src = "";
 
-	jQuery.fn.customSetFeaturedImage = function( attachment_id ) {
+    jQuery("li.attachment.selected").each(function() {
+      jQuery(this)
+        .find("div.type-image")
+        .each(function() {
+          image_src = jQuery(this)
+            .find("img")
+            .attr("src");
+        });
+    });
 
-		var image_src = '';
+    if (image_src) {
+      var post_id = jQuery("#post_ID").val();
 
-		jQuery( 'li.attachment.selected' ).each( function() {
-			jQuery( this ).find( 'div.type-image' ).each( function() {
-				image_src = jQuery( this ).find( 'img' ).attr( 'src' );
-			});
-		});
+      jQuery.post(
+        ajaxurl,
+        {
+          action: "instant_featured_image",
+          instant_featured_image_nonce:
+            instant_featured_image_i18n.instant_featured_image_nonce,
+          data: "src=" + image_src + "&post_id=" + post_id
+        },
+        function(response) {
+          if (response) {
+            jQuery(".inside", "#postimagediv").html(response);
+          }
+        }
+      );
+    }
 
-		if( image_src ) {
+    return false;
+  };
 
-			var post_id = jQuery( '#post_ID' ).val();
+  if (wp.media) {
+    var wpMediaFramePost = wp.media.view.MediaFrame.Post;
 
-			jQuery.post(
-				ajaxurl,
-				{
-					action : 'instant_featured_image',
-					instant_featured_image_nonce : instant_featured_image_i18n.instant_featured_image_nonce,
-					data : 'src=' + image_src + '&post_id=' + post_id
-				},
-				function( response ) {
-					if( response ) {
-						jQuery( '.inside', '#postimagediv' ).html( response );
-					}
-				}
-			);
+    wp.media.view.MediaFrame.Post = wpMediaFramePost.extend({
+      mainInsertToolbar: function(view) {
+        "use strict";
 
-		}
+        wpMediaFramePost.prototype.mainInsertToolbar.call(this, view);
 
-		return false;
-	}
+        var controller = this;
 
-	var wpMediaFramePost = wp.media.view.MediaFrame.Post;
+        this.selectionStatusToolbar(view);
 
-	wp.media.view.MediaFrame.Post = wpMediaFramePost.extend({
-	    mainInsertToolbar: function( view ) {
-	        "use strict";
+        view.set("insert-and-feature", {
+          style: "primary",
+          priority: 70,
+          text: instant_featured_image_i18n.button_text,
+          requires: { selection: true },
 
-	        wpMediaFramePost.prototype.mainInsertToolbar.call(this, view);
+          click: function() {
+            var state = controller.state(),
+              selection = state.get("selection");
 
-	        var controller = this;
+            jQuery.fn.customSetFeaturedImage();
 
-	        this.selectionStatusToolbar( view );
-
-	        view.set( "insert-and-feature", {
-	            style: "primary",
-	            priority: 70,
-	            text: instant_featured_image_i18n.button_text,
-	            requires: { selection: true },
-
-	            click: function() {
-					var state = controller.state(),
-						selection = state.get('selection');
-
-					jQuery.fn.customSetFeaturedImage();
-
-					controller.close();
-					state.trigger( 'insert', selection ).reset();
-				}
-	        });
-	    }
-
-	});
-
+            controller.close();
+            state.trigger("insert", selection).reset();
+          }
+        });
+      }
+    });
+  }
 });
